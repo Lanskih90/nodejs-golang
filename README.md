@@ -174,4 +174,4 @@ Example: `go_MY_FUNCTION_NAME`
 
 ## Support
 
-Linux only, Node.js 14+, Go 1.16.2
+Linux only, Node.js 14+, Go 1.19.5
