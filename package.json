@@ -1,6 +1,6 @@
 {
   "name": "nodejs-golang",
-  "version": "0.0.7",
+  "version": "0.0.5",
   "description": "Module for running Golang scripts using wasm in Node.js child processes",
   "keywords": [
     "nodejs",
@@ -23,10 +23,10 @@
     "url": "https://github.com/novokhatskyioleksii/nodejs-golang.git"
   },
   "scripts": {
-    "preinstall": "npm run preinstall:go1.17.13:download && npm run preinstall:go1.17.13:extract && npm run preinstall:go1.17.13:clean && npm run preinstall:go_modules:create && npm run preinstall:main:cp && npm run preinstall:mod:cp && npm run preinstall:wasm:build",
-    "preinstall:go1.17.13:download": "curl -O https://dl.google.com/go/go1.17.13.linux-amd64.tar.gz",
-    "preinstall:go1.17.13:extract": "tar xvf ./go1.17.13.linux-amd64.tar.gz",
-    "preinstall:go1.17.13:clean": "rm -rf ./go1.17.13.linux-amd64.tar.gz",
+    "preinstall": "npm run preinstall:go1.16.2:download && npm run preinstall:go1.16.2:extract && npm run preinstall:go1.16.2:clean && npm run preinstall:go_modules:create && npm run preinstall:main:cp && npm run preinstall:mod:cp && npm run preinstall:wasm:build",
+    "preinstall:go1.16.2:download": "curl -O https://dl.google.com/go/go1.16.2.linux-amd64.tar.gz",
+    "preinstall:go1.16.2:extract": "tar xvf ./go1.16.2.linux-amd64.tar.gz",
+    "preinstall:go1.16.2:clean": "rm -rf ./go1.16.2.linux-amd64.tar.gz",
     "preinstall:go_modules:create": "mkdir -p ../../go_modules",
     "preinstall:main:cp": "cp -n ./main.go ../../go_modules",
     "preinstall:mod:cp": "cp -n ./go.mod ../../go_modules",
