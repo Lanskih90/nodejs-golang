@@ -51,9 +51,9 @@ const build = async (scriptName = '') => {
   }
 };
 
-const run = (scriptName = '') => {
+const run = (scriptName = '', debug = false) => {
   return new Promise((resolve, reject) => {
-    console.log(cyanColor, NODEJS_GOLANG, blueColor, 'Started script', resetColor);
+    if (debug) console.log(cyanColor, NODEJS_GOLANG, blueColor, 'Started script', resetColor);
     const path = __dirname.split(`/${NODE_MODULES}`)[0];
 
     const modulePath = `${path}/${NODE_MODULES}/${NODEJS_GOLANG}`;
@@ -69,22 +69,22 @@ const run = (scriptName = '') => {
 
     childProcess.stderr.on('data', (err) => {
       error = err.toString();
-      console.log(cyanColor, NODEJS_GOLANG, redColor, 'Error script: ', err.toString(), resetColor);
-      console.log(cyanColor, NODEJS_GOLANG, blueColor, 'Finished script', resetColor);
+      if (debug) console.log(cyanColor, NODEJS_GOLANG, redColor, 'Error script: ', err.toString(), resetColor);
+      if (debug) console.log(cyanColor, NODEJS_GOLANG, blueColor, 'Finished script', resetColor);
       reject(new Error(error));
     });
 
     childProcess.stdout.on('close', () => {
       if (!error) {
-        console.log(cyanColor, NODEJS_GOLANG, yellowColor, 'Data: ', result, resetColor);
-        console.log(cyanColor, NODEJS_GOLANG, blueColor, 'Finished script', resetColor);
+        if (debug) console.log(cyanColor, NODEJS_GOLANG, yellowColor, 'Data: ', result, resetColor);
+        if (debug) console.log(cyanColor, NODEJS_GOLANG, blueColor, 'Finished script', resetColor);
         resolve(result);
       }
     });
   });
 };
 
-const instantiate = async (scriptName = '') => {
+const instantiate = async (scriptName = '', debug = false) => {
   try {
     require('./go/misc/wasm/wasm_exec');
 
@@ -102,7 +102,7 @@ const instantiate = async (scriptName = '') => {
     const wasmModule = await loader.instantiateStreaming(wasm, go.importObject);
     go.run(wasmModule.instance);
   } catch (err) {
-    console.log(cyanColor, NODEJS_GOLANG, redColor, 'Error instantiate: ', err.message, resetColor);
+    if (debug) console.log(cyanColor, NODEJS_GOLANG, redColor, 'Error instantiate: ', err.message, resetColor);
   }
 };
 
